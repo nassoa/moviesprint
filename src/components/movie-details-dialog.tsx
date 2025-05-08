@@ -95,14 +95,14 @@ export function MovieDetailsDialog({
                   <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                   {movie.imDbRating}
                 </Badge>
-                {movie.contentRating !== "N/A" && (
+                {/* {movie.contentRating !== "N/A" && (
                   <Badge
                     variant="outline"
                     className="bg-primary-50 text-primary-700 border-primary-200"
                   >
                     {movie.contentRating}
                   </Badge>
-                )}
+                )} */}
                 <Badge
                   variant="outline"
                   className="bg-primary-50 text-primary-700 border-primary-200"
