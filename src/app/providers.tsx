@@ -21,7 +21,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
             refetchOnWindowFocus: false, // Désactiver le refetch automatique
             refetchOnMount: false, // Désactiver le refetch au montage
             // Ajouter une gestion d'erreur par défaut
-            useErrorBoundary: false,
+            // useErrorBoundary: false,
+            throwOnError: false,
           },
         },
       })
