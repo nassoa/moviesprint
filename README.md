@@ -1,13 +1,13 @@
 # 🎬 MovieSprint
 
 **Un laboratoire Next.js pour explorer les bonnes pratiques de TanStack Query**  
-_"Par la pratique vient la maîtrise" - Une sagesse développeur_
+\_"Par la pratique vient la maîtrise"
 
 ![Project Preview](public/screenshot.png) <!-- Ajoutez votre propre capture -->
 
 ## 🧪 Concept du Projet
 
-Un terrain de jeu pédagogique pour expérimenter avec **TanStack Query v5** dans un contexte Next.js 14.
+Un terrain de jeu pédagogique pour expérimenter avec **TanStack Query** dans un contexte Next.js
 
 ## ✨ Fonctionnalités
 
