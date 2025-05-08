@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { Calendar } from "lucide-react";
 
@@ -24,6 +24,33 @@ export function MoviesList({
   } = useInfiniteMovies();
 
   const { ref, inView } = useInView();
+
+  const allMovies = useMemo(() => {
+    const seenIds = new Set();
+    const uniqueMovies = [];
+
+    if (popularMovies) {
+      for (const movie of popularMovies) {
+        if (!seenIds.has(movie.id)) {
+          seenIds.add(movie.id);
+          uniqueMovies.push(movie);
+        }
+      }
+    }
+
+    if (infiniteData?.pages) {
+      for (const page of infiniteData.pages) {
+        for (const movie of page.movies) {
+          if (!seenIds.has(movie.id)) {
+            seenIds.add(movie.id);
+            uniqueMovies.push(movie);
+          }
+        }
+      }
+    }
+
+    return uniqueMovies;
+  }, [popularMovies, infiniteData]);
 
   // Bonne pratique: chargement automatique des données supplémentaires
   useEffect(() => {
@@ -51,15 +78,15 @@ export function MoviesList({
     );
   }
 
-  const allMovies = [
-    ...(popularMovies || []),
-    ...(infiniteData?.pages.flatMap((page) => page.movies) || []),
-  ];
+  // const allMovies = [
+  //   ...(popularMovies || []),
+  //   ...(infiniteData?.pages.flatMap((page) => page.movies) || []),
+  // ];
 
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {allMovies.map((movie) => (
+        {allMovies.map((movie, index) => (
           <Card
             key={movie.id}
             className="overflow-hidden hover:shadow-md transition-shadow duration-200 border-primary-100"
@@ -70,6 +97,7 @@ export function MoviesList({
                 alt={movie.title}
                 width={628}
                 height={676}
+                priority={index < 4}
                 className="w-full h-[32rem] object-cover"
                 unoptimized
               />

@@ -26,7 +26,7 @@ export function MoviesDashboard() {
     <div className="space-y-6">
       <StackDescription />
 
-      <Tabs defaultValue="categories" className="w-full">
+      <Tabs defaultValue="popular" className="w-full">
         <TabsList className="grid w-full grid-cols-4 bg-primary-50">
           <TabsTrigger
             value="popular"
@@ -53,11 +53,11 @@ export function MoviesDashboard() {
             Favoris
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="categories">
-          <MovieCategories onSelectMovie={handleSelectMovie} />
-        </TabsContent>
         <TabsContent value="popular">
           <MoviesList onSelectMovie={handleSelectMovie} />
+        </TabsContent>
+        <TabsContent value="categories">
+          <MovieCategories onSelectMovie={handleSelectMovie} />
         </TabsContent>
         <TabsContent value="search">
           <MovieSearch onSelectMovie={handleSelectMovie} />
